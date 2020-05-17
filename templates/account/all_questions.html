@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Questionnaire : {{ q_id.questionnaire_name }}</h3>
+<ul>
+    {% for question in questions %}
+    <li>{{ question.question_text }}</li>
+
+    <form action="{% url 'api:vote' q_id.id question.id %}" method="post">
+        {% csrf_token %}
+        {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id}}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+        {% endfor %}
+        <input type="submit" value="Vote">
+    </form>
+
+    {% endfor %}
+</ul>
+{% endblock %}

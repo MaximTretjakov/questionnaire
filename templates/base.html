@@ -1,0 +1,62 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href='{% static "css/base.css" %}' rel="stylesheet">
+</head>
+<body>
+<div id="header">
+    <span class="logo">Menu</span>
+    {% if request.user.is_authenticated %}
+    <ul class="menu">
+        <li {% if section == "questionnaire" %}class="selected"{% endif %}>
+        <a href="/api/all-questionnaire/">questionnaire</a>
+        </li>
+        <li {% if section == "results" %}class="selected"{% endif %}>
+        <a href="/api/all-results/">your results</a>
+        </li>
+
+        {% if request.user.is_staff %}
+
+        <li {% if section == "delete" %}class="selected"{% endif %}>
+        <a href="/api/get-questionnaire/">delete questionnaire</a>
+        </li>
+        <li {% if section == "append" %}class="selected"{% endif %}>
+        <a href="/api/append-questionnaire/">append questionnaire</a>
+        </li>
+        <li {% if section == "update" %}class="selected"{% endif %}>
+        <a href="/api/update-questionnaire/">update questionnaire</a>
+        </li>
+        <li {% if section == "delete_question" %}class="selected"{% endif %}>
+        <a href="/api/get-question/">delete question</a>
+        </li>
+        <li {% if section == "append_question" %}class="selected"{% endif %}>
+        <a href="/api/append-question/">append question</a>
+        </li>
+        <li {% if section == "update_question" %}class="selected"{% endif %}>
+        <a href="/api/update-question/">update question</a>
+        </li>
+
+        {% endif %}
+
+    </ul>
+    {% endif %}
+    <span class="user">
+        {% if request.user.is_authenticated %}
+        Hello {{ user.get_username }},
+        {% if request.user.is_staff %}
+        status Administrator
+        {% endif %}
+        <a href='{% url "logout" %}'>Logout</a>
+        {% else %}
+        <a href='{% url "login" %}'>Log-in</a>
+        {% endif %}
+    </span>
+</div>
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>

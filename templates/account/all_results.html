@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+{% if all_results|length > 0 %}
+<h1>User : {{ user }} <br> all results</h1>
+{% for result in all_results %}
+<table class="results">
+    <tr>
+        <td class="td-style">{{ result.user_id }}</td>
+        <td class="td-style">{{ result.questionnaire }}</td>
+        <td class="td-style">{{ result.questions }}</td>
+        <td class="td-style">{{ result.choice }}</td>
+        <td class="td-style">{{ result.started_at }}</td>
+        <td class="td-style">{{ result.ended_at }}</td>
+    </tr>
+</table>
+{% endfor %}
+{% else %}
+<h1>Not result yet</h1>
+{% endif %}
+{% endblock %}

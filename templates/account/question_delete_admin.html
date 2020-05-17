@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Delete questionnaires</h1>
+
+{% for item in question_items %}
+<form action="{% url 'api:delete_q' item.id %}" method="post">
+{% csrf_token %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ item.id }}">
+    <label for="choice{{ forloop.counter }}">{{ item.question_text }}</label><br>
+{% endfor %}
+<input type="submit" value="Delete">
+</form>
+
+{% endblock %}

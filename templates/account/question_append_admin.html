@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>User : {{ user }} </h1>
+<h2>Add a new question</h2>
+<form action="." method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Add"></p>
+</form>
+{% endblock %}

@@ -1,0 +1,15 @@
+.results {
+    border: 1px solid black;
+    height: 100px;
+    width: 900px;
+    border-collapse: collapse;
+}
+
+.td-style {
+    table-layout: fixed;
+    width: 100px;
+    border: 1px solid black;
+    padding: 5px;
+    vertical-align: middle;
+    text-align: center;
+}

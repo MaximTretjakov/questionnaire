@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>All questionnaires : </h2>
+    <ul>
+        {% for q in queryset %}
+        <li><a href="{% url 'api:questions' q.id %}">{{ q.questionnaire_name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
